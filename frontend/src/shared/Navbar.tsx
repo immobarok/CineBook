@@ -35,7 +35,7 @@ const Navbar = () => {
       <motion.div
         className={`fixed top-0 left-0 w-full z-50 px-6 md:px-16 lg:px-32 transition-all duration-300 ${
           isScrolled
-            ? "py-2 bg-black/80 backdrop-blur-lg"
+            ? "py-2 bg-black/10 backdrop-blur-sm"
             : "py-4 bg-transparent"
         }`}
         initial={{ y: -100 }}
@@ -50,7 +50,7 @@ const Navbar = () => {
           </motion.div>
 
           <motion.div
-            className="hidden md:flex border border-white/15 backdrop-blur-lg bg-black/10 rounded-full px-8 py-4 gap-7"
+            className="hidden md:flex border border-white/15 backdrop-blur-lg bg-white/5 rounded-full px-8 py-4 gap-7"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
