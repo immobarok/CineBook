@@ -1,14 +1,16 @@
 import React from "react";
 import Navbar from "../shared/Navbar";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import Footer from "../shared/Footer";
 
 const RootLayout = () => {
+  const location = useLocation();
+  const isAdminLayout = location.pathname.startsWith("/admin");
   return (
     <div>
-      <Navbar />
+      {!isAdminLayout && <Navbar />}
       <Outlet />
-      <Footer />
+      {!isAdminLayout && <Footer />}
     </div>
   );
 };
