@@ -1,12 +1,14 @@
 import React from "react";
 import "aos/dist/aos.css";
 import type { Movie } from "../types/MovieTypes";
+import { Navigate, useNavigate } from "react-router";
 
 type MovieCardProps = {
   movie: Movie;
 };
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
+  const navigate = useNavigate();
   const formatRuntime = (minutes: number) => {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
@@ -85,7 +87,8 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
 
         {/* Book Button */}
         <button
-          className="mt-4 w-full bg-gradient-to-r from-primary to-secondary text-white py-2 rounded-lg font-medium text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          onClick={() => navigate(`/movies/${movie._id}`)}
+          className="mt-4 w-full bg-gradient-to-r from-primary to-secondary cursor-pointer text-white py-2 rounded-lg font-medium text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           data-aos="fade-up"
           data-aos-delay="200"
         >

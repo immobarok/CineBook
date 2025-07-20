@@ -16,3 +16,12 @@ body{
   color: white;
   background-color: #080813;
 }
+
+.hide-scrollbar{
+  scrollbar-width: none;
+}
+
+.active{
+  color: #9929EA;
+  font-weight: 700;
+}

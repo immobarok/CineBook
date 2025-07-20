@@ -19,8 +19,6 @@ const Feature = () => {
 
   return (
     <div className="px-6 md:px-24 lg:px-32 overflow-hidden relative py-16">
-      {/* Decorative elements */}
-      {/* Primary Light Glow Top Right */}
       <div
         className="absolute w-96 h-96 rounded-full bg-primary/30 blur-3xl opacity-70 top-0 -right-40 -z-10 animate-none"
         data-aos="fade-left"

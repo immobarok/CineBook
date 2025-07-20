@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Menu, X, TicketPlus } from "lucide-react";
-import { Link, useNavigate } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { images } from "../assets/assets";
 import { useClerk, UserButton } from "@clerk/clerk-react";
 
@@ -61,16 +61,16 @@ const Navbar = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Link
+                <NavLink
                   to={link.path}
-                  className="text-white font-medium text-sm relative group hover:text-primary transition-all duration-300"
+                  className="text-white font-medium text-base relative group hover:text-primary transition-all duration-300"
                 >
                   {link.name}
                   <motion.div
                     className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
                     initial={{ width: 0 }}
                   />
-                </Link>
+                </NavLink>
               </motion.div>
             ))}
           </motion.div>

@@ -1,9 +1,17 @@
 import banner from './banner.jpg'
 import logo from './logo.png'
+import dune from './dune_part_2.jpg'
+import godz from './Godzilla_x_Kong.jpg'
+import furiosa from "./Furiosa_A_Mad.jpg";
+import popcorn from './popcorn.png'
 
 export const images = {
   banner,
   logo,
+  dune,
+  godz,
+  furiosa,
+  popcorn
 }
 type Trailer = {
   image: string;

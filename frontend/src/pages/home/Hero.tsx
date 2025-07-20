@@ -14,6 +14,7 @@ const Hero = () => {
         "Paul Atreides unites with the Fremen to wage war against House Harkonnen.",
       rating: "9.2",
       duration: "2h 46m",
+      image: images.dune,
     },
     {
       title: "Godzilla x Kong",
@@ -21,6 +22,7 @@ const Hero = () => {
         "The epic next chapter in the Monsterverse pits two titans against a hidden threat.",
       rating: "8.1",
       duration: "1h 55m",
+      image: images.godz,
     },
     {
       title: "Furiosa: A Mad Max Saga",
@@ -28,6 +30,7 @@ const Hero = () => {
         "The origin story of renegade warrior Furiosa before her encounter with Max.",
       rating: "8.7",
       duration: "2h 28m",
+      image: images.furiosa,
     },
   ];
 
@@ -55,19 +58,19 @@ const Hero = () => {
     >
       {/* Floating elements */}
       <motion.div
-        className="absolute top-10 right-10 bg-white/10 backdrop-blur-sm rounded-full p-4"
+        className="absolute top-10 right-10 bg-blue/2 backdrop-blur-sm rounded-full p-2"
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 3, repeat: Infinity }}
       >
-        <div className="bg-white/30 rounded-xl w-16 h-16" />
+        <img src={images.popcorn} alt="" className="h-12 w-12" />
       </motion.div>
 
       <motion.div
-        className="absolute bottom-20 left-10 bg-white/10 backdrop-blur-sm rounded-full p-3"
+        className="absolute bottom-20 left-10 bg-white/1 backdrop-blur-sm rounded-full p-3"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
       >
-        <div className="bg-gray-200 border-2 border-dashed rounded-xl w-12 h-12" />
+        <img src={images.popcorn} alt="" className="h-16 w-16" />
       </motion.div>
 
       {/* Content */}
@@ -143,7 +146,11 @@ const Hero = () => {
           </div>
 
           <div className="flex gap-4">
-            <div className="bg-gray-200 border-2 border-dashed rounded-xl w-24 h-32 flex-shrink-0" />
+            <img
+              src={featuredMovies[currentMovie].image}
+              alt=""
+              className="w-44 h-28"
+            />
             <div>
               <h4 className="text-2xl font-bold text-white mb-2">
                 {featuredMovies[currentMovie].title}
