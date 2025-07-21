@@ -15,6 +15,7 @@ import "aos/dist/aos.css";
 import { dummyDateTimeData, dummyShowsData } from "../../assets/assets";
 import ChooseDate from "./ChooseDate";
 import toast from "react-hot-toast";
+import Loader from "../../shared/Loader";
 
 interface Genre {
   id: number;
@@ -54,7 +55,6 @@ const MovieDetails: React.FC = () => {
     Object.keys(dummyDateTimeData)[0]
   );
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  
 
   useEffect(() => {
     AOS.init({
@@ -102,11 +102,7 @@ const MovieDetails: React.FC = () => {
   };
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-      </div>
-    );
+    return <Loader />;
   }
 
   if (!show) {

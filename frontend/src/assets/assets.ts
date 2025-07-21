@@ -4,6 +4,7 @@ import dune from './dune_part_2.jpg'
 import godz from './Godzilla_x_Kong.jpg'
 import furiosa from "./Furiosa_A_Mad.jpg";
 import popcorn from './popcorn.png'
+import type { Booking } from '../types/MovieTypes';
 
 export const images = {
   banner,
@@ -295,10 +296,10 @@ export const dummyDashboardData = {
 }
 
 
-export const dummyBookingData = [
+export const dummyBookingData : Booking[] = [
     {
         "_id": "68396334fb83252d82e17295",
-        "user": { "name": "GreatStack", },
+        "user": { "name": "Mobarok", },
         "show": {
             _id: "68352363e96d99513e4221a4",
             movie: dummyShowsData[0],
@@ -311,7 +312,7 @@ export const dummyBookingData = [
     },
     {
         "_id": "68396334fb83252d82e17295",
-        "user": { "name": "GreatStack", },
+        "user": { "name": "Mobarok", },
         "show": {
             _id: "68352363e96d99513e4221a4",
             movie: dummyShowsData[0],
@@ -324,7 +325,7 @@ export const dummyBookingData = [
     },
     {
         "_id": "68396334fb83252d82e17295",
-        "user": { "name": "GreatStack", },
+        "user": { "name": "Mobarok", },
         "show": {
             _id: "68352363e96d99513e4221a4",
             movie: dummyShowsData[0],
