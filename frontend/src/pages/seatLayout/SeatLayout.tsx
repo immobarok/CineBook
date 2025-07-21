@@ -68,7 +68,7 @@ const SeatLayout: React.FC = () => {
     );
   };
 
-  const renderSeats = (row: string, count = 9) => (
+  const renderSeats = (row: string, count = 8) => (
     <div key={row} className="flex gap-2 mt-2">
       <div className="flex flex-wrap items-center justify-center gap-2">
         {Array.from({ length: count }, (_, i) => {
@@ -138,7 +138,7 @@ const SeatLayout: React.FC = () => {
         {/* Seat Rows */}
         <div className="flex flex-col items-center text-xs text-gray-300 space-y-6">
           <div>{groupRow[0].map((row) => renderSeats(row))}</div>
-          <div className="grid grid-cols-2 gap-x-10 gap-y-6">
+          <div className="grid grid-cols-2 gap-x-8 gap-y-6">
             {groupRow.slice(1).map((group, index) => (
               <div key={index} className="space-y-2">
                 {group.map((row) => renderSeats(row))}
@@ -146,7 +146,7 @@ const SeatLayout: React.FC = () => {
             ))}
           </div>
         </div>
-        <button className="bg-gradient-to-r my-20 from-primary to-secondary text-white font-bold px-8 py-4 rounded-lg text-lg hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 flex gap-2 items-center">
+        <button className="bg-gradient-to-r my-20 from-primary to-secondary text-white font-bold px-6 py-3 rounded-lg text-lg hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 flex gap-2 items-center">
           <MousePointer2 />
           Process To Chekout
         </button>

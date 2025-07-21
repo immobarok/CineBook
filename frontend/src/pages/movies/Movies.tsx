@@ -39,7 +39,7 @@ const Movies = () => {
 
       {/* Movies grid */}
       <div
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+       className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
         data-aos="fade-up"
         data-aos-delay="200"
       >

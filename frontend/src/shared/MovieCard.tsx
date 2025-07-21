@@ -17,7 +17,8 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
 
   return (
     <div
-      className="group relative bg-gray-900 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary/20"
+      className="group relative bg-gray-900 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary/20
+             flex flex-col h-full min-h-[350px] max-h-[450px]"
       data-aos="fade-up"
       data-aos-duration="500"
     >
