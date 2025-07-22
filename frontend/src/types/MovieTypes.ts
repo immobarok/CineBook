@@ -34,5 +34,15 @@ export type Booking = {
   show: Show;
   amount: number;
   bookedSeats: string[];
-  isPaid:boolean
+  isPaid: boolean;
 };
+
+export type Cast = {
+  name: string;
+  profile_path: string;
+};
+
+export type DateType={
+  time:string;
+  showId:string;
+}
