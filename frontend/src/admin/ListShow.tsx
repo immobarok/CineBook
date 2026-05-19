@@ -2,17 +2,10 @@ import { useEffect, useState } from "react";
 import { dummyShowsData } from "../assets/assets";
 import Loader from "../shared/Loader";
 import moment from "moment";
+import type { Movie } from "../types/MovieTypes";
 
 type OccupiedSeats = {
   [seatNumber: string]: string;
-};
-
-type Movie = {
-  _id: string;
-  name: string;
-  image: string;
-  title?: string;
-  [key: string]: any;
 };
 
 type Show = {

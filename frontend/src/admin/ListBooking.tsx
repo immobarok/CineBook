@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { dummyBookingData } from "../assets/assets";
 import type { Booking } from "../types/MovieTypes";
 import Loader from "./components/Loader";
@@ -51,11 +51,7 @@ const ListBooking = () => {
                   <td className="p-2">
                     {moment(booking.show.showDateTime).format("LT")}
                   </td>
-                  <td className="p-2">
-                    {Object.keys(booking.bookedSeats)
-                      .map((seat) => booking.bookedSeats[seat])
-                      .join(", ")}
-                  </td>
+                  <td className="p-2">{booking.bookedSeats.join(", ")}</td>
                   <td className="p-2">
                     {currency}
                     {booking.amount}

@@ -4,12 +4,15 @@ import Loader from "./components/Loader";
 import { Check, StarIcon } from "lucide-react";
 import { converter } from "../lib/converter";
 import isoTimeFormat from "./../lib/isoTimeFormat";
+import type { Movie } from "../types/MovieTypes";
 
 const AddShow = () => {
   const currency = "$";
-  const [nowPlying, setNowplaying] = useState<[] | null>([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const [dateTimeSelection, setDateTimeSelection] = useState({});
+  const [nowPlying, setNowplaying] = useState<Movie[]>([]);
+  const [selectedMovie, setSelectedMovie] = useState<number | null>(null);
+  const [dateTimeSelection, setDateTimeSelection] = useState<
+    Record<string, string[]>
+  >({});
   const [dateTimeInput, setDateTimeInput] = useState<string>("");
   const [showPrice, setShowPrice] = useState<string>("");
 
@@ -34,7 +37,7 @@ const AddShow = () => {
 
   const handleRemoveTime = (date: string, time: string) => {
     setDateTimeSelection((prev) => {
-      const filteredTimes = prev[date].filter((t) => t !== time);
+      const filteredTimes = (prev[date] || []).filter((t) => t !== time);
 
       if (filteredTimes.length === 0) {
         const { [date]: _, ...rest } = prev;
@@ -61,7 +64,7 @@ const AddShow = () => {
     fetchNowPlaiyingMovie();
   }, []);
 
-  return nowPlying?.length > 0 ? (
+  return nowPlying.length > 0 ? (
     <div className="max-w-4xl mx-auto p-4 group">
       <div>
         <div className="flex items-center justify-start gap-3 mb-4">
