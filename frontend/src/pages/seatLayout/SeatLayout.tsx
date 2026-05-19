@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { dummyDateTimeData, dummyShowsData } from "../../assets/assets";
 import { ArrowRightIcon, ClockIcon, MousePointer2, X } from "lucide-react";
 import isoTimeFormat from "./../../lib/isoTimeFormat";
 import toast from "react-hot-toast";
+import { addBooking } from "../../lib/bookingStorage";
+import type { Booking } from "../../types/MovieTypes";
 
 interface RouteParams {
   id?: string;
@@ -66,6 +68,35 @@ const SeatLayout: React.FC = () => {
         ? prev.filter((seat) => seat !== seatId)
         : [...prev, seatId]
     );
+  };
+
+  const handleCheckout = () => {
+    if (!show || !selectedTime) {
+      return toast.error("Select a time first.");
+    }
+
+    if (selectedSeats.length === 0) {
+      return toast.error("Select at least one seat.");
+    }
+
+    const pricePerSeat = 12;
+    const newBooking: Booking = {
+      _id: `bk_${Date.now()}`,
+      user: { name: "Guest" },
+      show: {
+        _id: `show_${show.movie._id}_${selectedTime.time}`,
+        movie: show.movie,
+        showDateTime: selectedTime.time,
+        showPrice: pricePerSeat,
+      },
+      amount: pricePerSeat * selectedSeats.length,
+      bookedSeats: selectedSeats,
+      isPaid: false,
+    };
+
+    addBooking(newBooking);
+    toast.success("Added to My Booking.");
+    navigate("/myBooking");
   };
 
   const renderSeats = (row: string, count = 8) => (
@@ -146,7 +177,10 @@ const SeatLayout: React.FC = () => {
             ))}
           </div>
         </div>
-        <button className="bg-gradient-to-r my-20 from-primary to-secondary text-white font-bold px-6 py-3 rounded-lg text-lg hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 flex gap-2 items-center">
+        <button
+          onClick={handleCheckout}
+          className="bg-gradient-to-r my-20 from-primary to-secondary text-white font-bold px-6 py-3 rounded-lg text-lg hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 flex gap-2 items-center"
+        >
           <MousePointer2 />
           Process To Chekout
         </button>

@@ -6,22 +6,47 @@ import {
   Calendar,
   Clock,
   Ticket,
-  MapPin,
-  ArrowRight,
-  Loader2,
   ChevronRight,
 } from "lucide-react";
+import toast from "react-hot-toast";
+import type { Booking } from "../../types/MovieTypes";
+import {
+  ensureSeedBookings,
+  markBookingPaid,
+} from "../../lib/bookingStorage";
 
 const MyBooking = () => {
   const currency = "$";
-  const [bookings, setBooking] = useState<any[]>([]);
+  const [bookings, setBooking] = useState<Booking[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [activePaymentId, setActivePaymentId] = useState<string | null>(null);
+  const [isPaying, setIsPaying] = useState(false);
 
   const getMyBookings = async () => {
     // Simulate API call
     setTimeout(() => {
-      setBooking(dummyBookingData);
+      const stored = ensureSeedBookings(dummyBookingData);
+      setBooking(stored);
       setIsLoading(false);
+    }, 400);
+  };
+
+  const handlePayNow = (bookingId: string) => {
+    setActivePaymentId(bookingId);
+  };
+
+  const handleConfirmPayment = () => {
+    if (!activePaymentId) {
+      return;
+    }
+
+    setIsPaying(true);
+    setTimeout(() => {
+      const updated = markBookingPaid(activePaymentId);
+      setBooking(updated);
+      setActivePaymentId(null);
+      setIsPaying(false);
+      toast.success("Payment successful.");
     }, 800);
   };
 
@@ -130,11 +155,16 @@ const MyBooking = () => {
 
                             <div>
                               {!booking.isPaid ? (
-                                <button className="bg-gradient-to-r from-primary to-secondary text-white font-bold px-6 py-2.5 rounded-lg text-base hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 flex gap-2">
+                                <button
+                                  onClick={() => handlePayNow(booking._id)}
+                                  className="bg-gradient-to-r from-primary to-secondary text-white font-bold px-6 py-2.5 rounded-lg text-base hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 flex gap-2"
+                                >
                                   Pay Now <ChevronRight />
                                 </button>
                               ) : (
-                                <p className="px-4 bg-primary/20 rounded-2xl text-sm text-center items-center">paid</p>
+                                <p className="px-4 bg-primary/20 rounded-2xl text-sm text-center items-center">
+                                  paid
+                                </p>
                               )}
                             </div>
                           </div>
@@ -161,6 +191,58 @@ const MyBooking = () => {
                 </button>
               </div>
             )}
+          </div>
+        </div>
+      )}
+
+      {activePaymentId && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
+          <div className="w-full max-w-md rounded-2xl border border-white/10 bg-gray-900 p-6 shadow-2xl">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-white">
+                Demo Payment
+              </h3>
+              <button
+                onClick={() => setActivePaymentId(null)}
+                className="text-gray-400 hover:text-white"
+              >
+                ×
+              </button>
+            </div>
+            <div className="space-y-4">
+              <input
+                type="text"
+                placeholder="Cardholder name"
+                className="w-full rounded-lg bg-gray-800 border border-gray-700 px-4 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+              <input
+                type="text"
+                placeholder="Card number"
+                className="w-full rounded-lg bg-gray-800 border border-gray-700 px-4 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+              <div className="grid grid-cols-2 gap-3">
+                <input
+                  type="text"
+                  placeholder="MM/YY"
+                  className="w-full rounded-lg bg-gray-800 border border-gray-700 px-4 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+                <input
+                  type="text"
+                  placeholder="CVC"
+                  className="w-full rounded-lg bg-gray-800 border border-gray-700 px-4 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+              </div>
+              <button
+                onClick={handleConfirmPayment}
+                disabled={isPaying}
+                className="w-full rounded-lg bg-gradient-to-r from-primary to-secondary py-2.5 text-sm font-semibold text-white hover:opacity-90 disabled:opacity-60"
+              >
+                {isPaying ? "Processing..." : "Pay Now"}
+              </button>
+              <p className="text-xs text-gray-400">
+                Demo only. No real payment is processed.
+              </p>
+            </div>
           </div>
         </div>
       )}
