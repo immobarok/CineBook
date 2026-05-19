@@ -30,7 +30,7 @@ const ListShow = () => {
   const getAllShows = async () => {
     try {
       // Example fetch or mock data
-      const dummyShow: Show = {
+      const dummyShow: Show = { 
         movie: dummyShowsData[0],
         showDateTime: "2025-06-30T02:30:00.000Z",
         showPrice: 59,
