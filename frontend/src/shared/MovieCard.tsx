@@ -1,7 +1,7 @@
 import React from "react";
 import "aos/dist/aos.css";
 import type { Movie } from "../types/MovieTypes";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 type MovieCardProps = {
   movie: Movie;
@@ -9,6 +9,7 @@ type MovieCardProps = {
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const navigate = useNavigate();
+  const language = (movie.original_language || "EN").toUpperCase();
   const formatRuntime = (minutes: number) => {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
@@ -53,7 +54,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
             {movie.title}
           </h3>
           <span className="text-xs text-gray-400 bg-gray-800 px-2 py-1 rounded">
-            {movie.original_language.toUpperCase()}
+            {language}
           </span>
         </div>
 

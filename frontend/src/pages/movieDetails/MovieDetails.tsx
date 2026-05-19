@@ -14,7 +14,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { dummyDateTimeData, dummyShowsData } from "../../assets/assets";
 import ChooseDate from "./ChooseDate";
-import toast from "react-hot-toast";
 import Loader from "../../shared/Loader";
 
 interface Genre {

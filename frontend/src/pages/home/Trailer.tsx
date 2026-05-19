@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import  { useState, useEffect, useRef } from "react";
 import ReactPlayer from "react-player";
 import { dummyTrailers } from "../../assets/assets";
 import {

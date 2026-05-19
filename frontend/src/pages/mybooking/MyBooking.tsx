@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { dummyBookingData } from "../../assets/assets";
-import isoTimeFormat from "../../lib/isoTimeFormat";
 import moment from "moment";
 import {
   Calendar,
@@ -21,6 +20,12 @@ const MyBooking = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [activePaymentId, setActivePaymentId] = useState<string | null>(null);
   const [isPaying, setIsPaying] = useState(false);
+
+  const formatRuntime = (minutes: number) => {
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    return `${hours}h ${mins}m`;
+  };
 
   const getMyBookings = async () => {
     // Simulate API call
@@ -114,9 +119,7 @@ const MyBooking = () => {
                           <div className="flex flex-wrap gap-4 mt-4 mb-6">
                             <div className="flex items-center gap-2 text-gray-300">
                               <Clock className="h-4 w-4 text-primary" />
-                              <span>
-                                {isoTimeFormat(booking.show.movie.runtime)}
-                              </span>
+                              <span>{formatRuntime(booking.show.movie.runtime)}</span>
                             </div>
                             <div className="flex items-center gap-2 text-gray-300">
                               <Calendar className="h-4 w-4 text-primary" />

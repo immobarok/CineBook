@@ -14,9 +14,11 @@ export type Movie = {
   backdrop_path: string;
   genres: Genre[];
   release_date: string;
+  original_language?: string;
   vote_average: number;
   vote_count: number;
   runtime: number;
+  tagline?: string;
 };
 
 export type Show = {

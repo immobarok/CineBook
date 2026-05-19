@@ -3,12 +3,21 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 
-const ChooseDate = ({ dateTime, id }) => {
+const ChooseDate = ({
+  dateTime,
+  id,
+}: {
+  dateTime: Record<string, unknown>;
+  id?: string;
+}) => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<string | null>(null);
   const onBookHandler = () => {
     if (!selected) {
       return toast.error("Select a date");
+    }
+    if (!id) {
+      return toast.error("Missing movie id");
     }
     navigate(`/movies/${id}/${selected}`);
     scrollTo(0, 0);

@@ -1,28 +1,18 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { dummyDateTimeData, dummyShowsData } from "../../assets/assets";
-import { ArrowRightIcon, ClockIcon, MousePointer2, X } from "lucide-react";
+import { ClockIcon, MousePointer2, X } from "lucide-react";
 import isoTimeFormat from "./../../lib/isoTimeFormat";
 import toast from "react-hot-toast";
 import { addBooking } from "../../lib/bookingStorage";
-import type { Booking } from "../../types/MovieTypes";
-
-interface RouteParams {
-  id?: string;
-  date?: string;
-}
+import type { Booking, Movie } from "../../types/MovieTypes";
 
 interface ShowTime {
   time: string;
 }
 
-interface Show {
-  _id: string;
-  title: string;
-}
-
 interface ShowWithTime {
-  movie: Show;
+  movie: Movie;
   dateTime: Record<string, ShowTime[]>;
 }
 
